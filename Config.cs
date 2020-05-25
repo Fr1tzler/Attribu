@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using SFML.System;
 using SFML.Window;
 
 namespace TowerDefence
@@ -24,8 +26,16 @@ namespace TowerDefence
             "________________",
         };
 
+        public static Vector2f[] Path =
+        {
+            
+        };
+
         public static int TowerMaxLevel = 6;
 
+        public const int TILE_SIZE = 50;
+
+        
         public static uint ScreenWidth = VideoMode.DesktopMode.Width;
         public static uint ScreenHeight = VideoMode.DesktopMode.Height;
     }

@@ -1,3 +1,6 @@
+using System;
+using SFML.System;
+
 namespace TowerDefence
 {
     public class Mob
@@ -14,5 +17,21 @@ namespace TowerDefence
         public int currSpeed;
         public int currMagicalResist;
         public int currPhysicalResist;
+
+        public Vector2f position;
+        public Vector2f destination;
+        public Vector2f shift;
+        
+        public bool Arrived
+        {
+            get => MathModule.Length(position - destination) <= 10e-6;
+        }
+        
+        public void Move()
+        {
+            var delta = destination - position;
+            var deltaLength = MathModule.Length(delta);
+            position += delta * (float) (Math.Min(currSpeed / deltaLength, 1));
+        }
     }
 }
