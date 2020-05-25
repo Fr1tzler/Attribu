@@ -57,6 +57,12 @@ namespace TowerDefence
                     target.Draw(tiles[i, j]);
                 }
             }
+            target.Draw(new CircleShape
+            {
+                Radius = 5,
+                Position = Controller.MousePosition,
+                FillColor = Controller.Click ? Color.Red : Color.Cyan,
+            });
         }
     }
 

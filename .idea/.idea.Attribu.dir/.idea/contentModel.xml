@@ -13,6 +13,7 @@
       </e>
       <e p="Attribu.csproj" t="IncludeRecursive" />
       <e p="Config.cs" t="Include" />
+      <e p="Controller.cs" t="Include" />
       <e p="MathModule.cs" t="Include" />
       <e p="Mob.cs" t="Include" />
       <e p="Model.cs" t="Include" />
