@@ -11,12 +11,13 @@ namespace TowerDefence
         public readonly int baseSpeed;
         public readonly int damage;
         public readonly int baseMagicalResist;
-        public readonly int basePhysicalResist;
+        public readonly int baseArmor;
+        public readonly double evasion;
         
         public int currHealth;
         public int currSpeed;
         public int currMagicalResist;
-        public int currPhysicalResist;
+        public int currArmor;
 
         public Vector2f position;
         public Vector2f destination;
