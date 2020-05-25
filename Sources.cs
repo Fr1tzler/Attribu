@@ -2,9 +2,9 @@ using SFML.Graphics;
 
 namespace TowerDefence
 {
-    static class Data
+    static class Sources
     {
-        const string Textures = "Data\\Textures\\";
+        const string Textures = "src\\Textures\\";
 
         public static Texture Field;
         public static Texture Road;

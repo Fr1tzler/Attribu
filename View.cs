@@ -6,7 +6,6 @@ namespace TowerDefence
     class World : Transformable, Drawable
     {
         public int SizeX, SizeY;
-
         public Tile[,] tiles;
 
         public World(string[] map)
@@ -39,7 +38,6 @@ namespace TowerDefence
         public Tile GetTile(int x, int y)
         {
             if (x < 0 || x >= SizeX || y < 0 || y >= SizeY) return null;
-
             return tiles[x, y];
         }
 

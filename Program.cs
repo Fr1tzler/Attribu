@@ -15,20 +15,22 @@ namespace TowerDefence
             window.Closed += Window_Closed;
             window.Resized += Window_Resized;
 
-            TowerDefence.Main.Start();
-
+            var model = new Model();
+            var world = new World(Model.Map);
+            
             while (window.IsOpen)
             {
                 window.DispatchEvents();
-                TowerDefence.Main.Update();
+                Model.Update(0.1);
                 window.Clear(Color.Black);
-                TowerDefence.Main.Draw(window);
+                window.Draw(world);
                 window.Display();
             }
         }
 
         private static void Window_Closed(object sender, EventArgs e) => window.Close();
-        
-        private static void Window_Resized(object sender, SizeEventArgs e) => window.SetView(new View(new FloatRect(0, 0, e.Width, e.Height)));
+
+        private static void Window_Resized(object sender, SizeEventArgs e) =>
+            window.SetView(new View(new FloatRect(0, 0, e.Width, e.Height)));
     }
 }

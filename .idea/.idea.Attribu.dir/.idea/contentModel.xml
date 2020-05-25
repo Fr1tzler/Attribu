@@ -12,10 +12,12 @@
         </e>
       </e>
       <e p="Attribu.csproj" t="IncludeRecursive" />
-      <e p="Data.cs" t="Include" />
-      <e p="Main.cs" t="Include" />
+      <e p="Config.cs" t="Include" />
+      <e p="Model.cs" t="Include" />
       <e p="Program.cs" t="Include" />
-      <e p="World.cs" t="Include" />
+      <e p="Sources.cs" t="Include" />
+      <e p="TODO.txt" t="Include" />
+      <e p="View.cs" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
