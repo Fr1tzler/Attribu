@@ -1,3 +1,5 @@
+using SFML.Window;
+
 namespace TowerDefence
 {
     public static class Config
@@ -21,5 +23,10 @@ namespace TowerDefence
             "________________",
             "________________",
         };
+
+        public static int TowerMaxLevel = 6;
+
+        public static uint ScreenWidth = VideoMode.DesktopMode.Width;
+        public static uint ScreenHeight = VideoMode.DesktopMode.Height;
     }
 }

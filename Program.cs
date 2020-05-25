@@ -10,7 +10,7 @@ namespace TowerDefence
 
         static void Main(string[] args)
         {
-            window = new RenderWindow(new VideoMode(800, 800), "Tower Defence");
+            window = new RenderWindow(new VideoMode(Config.ScreenWidth, Config.ScreenHeight), "Tower Defence");
             window.SetVerticalSyncEnabled(true);
             window.Closed += Window_Closed;
             window.Resized += Window_Resized;
