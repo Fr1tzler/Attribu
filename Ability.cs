@@ -14,7 +14,12 @@ namespace TowerDefence
         public bool inCooldown;
         public Time currCooldown; // hz nado li
 
-        public Ability(bool _isActive, double _baseCastRange, int _manaCost, Time _cooldown)
+        public Ability(
+            bool _isActive, 
+            double _baseCastRange, 
+            int _manaCost, 
+            Time _cooldown
+            )
         {
             isActive = _isActive;
             baseCastRange = _baseCastRange;
@@ -40,8 +45,8 @@ namespace TowerDefence
 
         public void Absorb(Tower owner, Tower target)
         {
-            target.Death();
             owner.LevelUp();
+            target.Death();
         }
     }
 
@@ -62,8 +67,9 @@ namespace TowerDefence
         
         public void Replace(Tower owner, Tower target)
         {
-            target.Death();
-            owner.LevelUp();
+            target.Replace(owner.position);
+            target.LevelUp();
+            owner.Death();
         }
     }
 }

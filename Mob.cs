@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using SFML.System;
 
 namespace TowerDefence
@@ -22,6 +23,9 @@ namespace TowerDefence
         public Vector2f position;
         public Vector2f destination;
         public Vector2f shift;
+        
+        public List<Ability> Abilities;
+        //public List<Buff> Buffes; // in future versions
         
         public bool Arrived
         {
