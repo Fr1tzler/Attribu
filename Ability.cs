@@ -2,7 +2,7 @@
 
 namespace TowerDefence
 {
-    public class Ability
+    public abstract class Ability
     {
         public readonly bool isActive; // ability will be active (need mana) or passive (don't need mana)
         public readonly double baseCastRange;

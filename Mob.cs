@@ -4,7 +4,7 @@ using SFML.System;
 
 namespace TowerDefence
 {
-    public class Mob
+    public abstract class Mob
     {
         public readonly string className;
         
@@ -25,7 +25,7 @@ namespace TowerDefence
         public Vector2f shift;
         
         public List<Ability> Abilities;
-        //public List<Buff> Buffes; // in future versions
+        public List<Buff> Buffes;
         
         public bool Arrived
         {

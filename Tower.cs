@@ -5,7 +5,7 @@ using SFML.System;
 
 namespace TowerDefence
 {
-    public class Tower
+    public abstract class Tower
     {
         public Config.Attribute Attribute;
         
@@ -30,8 +30,8 @@ namespace TowerDefence
         public Time lastShot;
 
         public List<Ability> Abilities;
-        //public List<Buff> Buffes; // in future versions
-        //public List<Item> Items; // in future versions
+        public List<Buff> Buffes;
+        public List<Item> Items;
 
         public Tower(
             bool _isMelee,
@@ -43,7 +43,7 @@ namespace TowerDefence
             )
         {
             isMelee = _isMelee;
-            baseDamage = _baseDamage;
+            baseHaveMana = _baseHaveMana;
             maxMana = _maxMana;
             baseManaRegen = _baseManaRegen;
             baseDamage = _baseDamage;
