@@ -1,4 +1,6 @@
-﻿using SFML.System;
+﻿using System;
+using System.Numerics;
+using SFML.System;
 
 namespace TowerDefence
 {
@@ -70,6 +72,29 @@ namespace TowerDefence
             target.Replace(owner.position);
             target.LevelUp();
             owner.Death();
+        }
+    }
+
+    public class FocusFire : Ability
+    {
+        public double[] modBaseAttackTime;
+        public FocusFire() : base(
+            false, 
+            0, 
+            0, 
+            Time.FromMilliseconds(0)
+        )
+        {
+            currCastRange = 0;
+            isGlobal = false;
+            inCooldown = false;
+            currCooldown = Time.FromMilliseconds(0);
+            modBaseAttackTime = new[] {-0.1, -0.2, -0.3, -0.4, -0.5, -0.6};
+        }
+
+        public void DoFocusFire(Tower owner)
+        {
+            owner.currAttackTime += Time.FromSeconds((float)modBaseAttackTime[owner.level - 1]);
         }
     }
 }

@@ -7,19 +7,50 @@ namespace TowerDefence
 {
     public abstract class Tower
     {
+        public readonly struct Configs
+        {
+            public readonly string name;
+            public readonly Config.Attribute baseAttribute;
+            public readonly bool isMelee; // close or long-range attack 
+            public readonly bool baseHaveMana; // tower may not has mana (if has passive ability)
+            public readonly int maxMana;
+            public readonly int baseManaRegen;
+            public readonly int baseDamage;
+            public readonly double baseAttackRange;
+            public readonly double baseAttackTime;
+
+            public Configs(
+                string _name,
+                Config.Attribute _baseAttribute,
+                bool _isMelee, 
+                bool _baseHaveMana,
+                int _maxMana,
+                int _baseManaRegen,
+                int _baseDamage,
+                double _baseAttackRange,
+                double _baseAttackTime)
+            {
+                name = _name;
+                baseAttribute = _baseAttribute;
+                isMelee = _isMelee;
+                baseHaveMana = _baseHaveMana;
+                maxMana = _maxMana;
+                baseManaRegen = _baseManaRegen;
+                baseDamage = _baseDamage;
+                baseAttackRange = _baseAttackRange;
+                baseAttackTime = _baseAttackTime;
+            }
+        }
+
+        public Configs configs;
         public Config.Attribute Attribute;
-        
-        public readonly bool isMelee; // close or long-range attack 
-        public readonly bool baseHaveMana; // tower may not has mana (if has passive ability)
-        public readonly int maxMana;
-        public readonly int baseManaRegen;
-        public readonly int baseDamage;
-        public readonly double baseAttackTime;
 
         public bool currHaveMana; // one of items will 'turn off' mana of the tower
         public int currMana;
         public int currManaRegen;
         public int currDamage;
+        public double currAttackRange;
+        public Time currAttackTime;
         public double modifiedAttackSpeed;
         public double effectResist;
         public double trueStrike;
@@ -33,21 +64,27 @@ namespace TowerDefence
         public List<Buff> Buffes;
         public List<Item> Items;
 
-        public Tower(
-            bool _isMelee,
-            bool _baseHaveMana, 
-            int _maxMana, 
-            int _baseManaRegen, 
-            int _baseDamage, 
-            double _baseAttackTime
-            )
+        public Tower(int towerId, Vector2i _position)
         {
-            isMelee = _isMelee;
-            baseHaveMana = _baseHaveMana;
-            maxMana = _maxMana;
-            baseManaRegen = _baseManaRegen;
-            baseDamage = _baseDamage;
-            baseAttackTime = _baseAttackTime;
+            configs = Config.TowerConfigs[towerId];
+            Attribute = configs.baseAttribute;
+            
+            currHaveMana = configs.baseHaveMana;
+            currMana = 0;
+            currManaRegen = configs.baseManaRegen;
+            currDamage = configs.baseDamage;
+            currAttackRange = configs.baseAttackRange;
+            currAttackTime = Time.FromSeconds((float)configs.baseAttackTime);
+            modifiedAttackSpeed = 0;
+            effectResist = 0;
+            trueStrike = 0;
+
+            level = 1;
+            lastShot = Time.Zero;
+            position = _position;
+
+            Abilities.Add(new Absorption());
+            Abilities.Add(new Replacing());
         }
         
         public bool ReadyToFire()
@@ -78,28 +115,14 @@ namespace TowerDefence
 
     public class TheFirstTower : Tower
     {
-        TheFirstTower(Vector2i _position) : base(
-            true,
-            false,
-            0,
-            0,
-            1,
-            1.75
-            )
-        {
-            Attribute = Config.Attribute.Strength;
-            
-            currHaveMana = baseHaveMana;
-            currMana = 0;
-            currManaRegen = baseManaRegen;
-            currDamage = baseDamage;
-            modifiedAttackSpeed = 0;
-            effectResist = 0;
-            trueStrike = 0;
+        TheFirstTower(Vector2i _position) : base (0, _position){}
+    }
 
-            level = 1;
-            lastShot = Time.Zero;
-            position = _position;
+    public class Windranger : Tower
+    {
+        Windranger(Vector2i _position) : base (1, _position)
+        {
+            Abilities.Add(new FocusFire());
         }
     }
 }
