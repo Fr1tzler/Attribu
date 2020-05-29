@@ -21,24 +21,17 @@ namespace TowerDefence
             window.Resized += Window_Resized;
 
             var model = new Model();
-            var world = new World(Model.Map);
+            var world = new World(Config.Map);
             
             while (window.IsOpen)
             {
                 window.DispatchEvents();
                 window.Clear(Color.Black);
-                switch (currentState)
-                {
-                    case 0:
-                        Model.Update(0.1);
-                        window.Draw(world);
-                        break;
-                    case 1:
-                        break;
-                    default:
-                        throw new Exception("ПОШЕЛ НАХУЙ, ПИДОРАС!");
-                }
-                Model.Update(0.1);
+                
+                Controller.Update();
+                Model.Update(0.1f);
+                world.Update();
+                
                 window.Draw(world);
                 window.Display();
             }

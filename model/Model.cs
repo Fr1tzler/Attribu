@@ -4,19 +4,25 @@ namespace TowerDefence
 { 
     class Model
     {
-        public static string[] Map;
-
-        public List<Mob> Wave;
+        public static List<Mob> Wave;
         public List<Tower> Towers;
         
         public Model()
         {
-            Map = Config.Map;
+            Wave = new List<Mob>();
+            Towers = new List<Tower>();
         }
 
-        public static void Update(double deltaTime)
+        public static void Update(float deltaTime)
         {
-            
+            foreach (var mob in Wave)
+            {
+                if (Wave.Count == 0)
+                    break; 
+                mob.Move(deltaTime);
+                if (mob.Arrived)
+                    mob.currentPathDestinaton++;
+            }
         }
     }
 }

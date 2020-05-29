@@ -26,17 +26,24 @@ namespace TowerDefence
         
         public List<Ability> Abilities;
         public List<Buff> Buffes;
+
+        public int currentPathDestinaton;
+
+        public Mob()
+        {
+            // владек сделай уже список мобов не хватает я ебал как сильно
+        }
         
         public bool Arrived
         {
             get => MathModule.Length(position - destination) <= 10e-6;
         }
         
-        public void Move()
+        public void Move(float deltaTime)
         {
             var delta = destination - position;
-            var deltaLength = MathModule.Length(delta);
-            position += delta * (float) (Math.Min(currSpeed / deltaLength, 1));
+            var deltaLength = MathModule.Length(delta * deltaTime);
+            position += delta * (float) (Math.Min(deltaTime * currSpeed / deltaLength, 1));
         }
     }
 }

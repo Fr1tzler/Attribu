@@ -6,6 +6,17 @@ namespace TowerDefence
 {
     public static class MathModule
     {
+        /*--^----------,--------,-----,--------^-,
+        | |||||||||   `-ADIDAS-'     |          O
+       `+---------------------------^----------|
+      `\_,---------,---------,--------------'
+       / XXXXXX /'|       /'
+      / XXXXXX /  `\    /'
+     / XXXXXX /`-------'
+    / XXXXXX /
+   / XXXXXX /
+  (________(                
+   `-----*/
         public static double Length(Vector2f vect)
         {
             return Math.Sqrt(vect.X * vect.X + vect.Y * vect.Y);
@@ -47,5 +58,7 @@ namespace TowerDefence
             (float)Math.Ceiling(-x * 16 / Config.ScreenWidth + y * 16 / Config.ScreenHeight));
 
         public static Vector2f ReverseViewTransform(Vector2f vect) => ReverseViewTransform(vect.X, vect.Y);
+
+        public static int NormalizePoint(double coordinate) => (int) Math.Min(16, Math.Max(1, coordinate)) - 1;
     }
 }

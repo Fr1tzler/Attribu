@@ -1,3 +1,4 @@
+using System;
 using SFML.Graphics;
 using SFML.System;
 
@@ -7,7 +8,8 @@ namespace TowerDefence
     {
         public int SizeX, SizeY;
         public Tile[,] tiles;
-
+        public Tile activeTile;
+        
         public World(string[] map)
         {
             char
@@ -34,19 +36,22 @@ namespace TowerDefence
                 }
             }
         }
-
-        public Tile GetTile(int x, int y)
-        {
-            if (x < 0 || x >= SizeX || y < 0 || y >= SizeY) return null;
-            return tiles[x, y];
-        }
-
         public void SetTile(int x, int y, int id)
         {
             tiles[x, y] = new Tile(id);
             tiles[x, y].Position = MathModule.ViewTransform(x, y) + Config.PositionShift;
         }
 
+        public void Update()
+        {
+            foreach (var tile in tiles)
+            {
+                tile.shape.OutlineColor = Color.Black;
+            }
+            activeTile = tiles[Controller.NormalizedMousePosition.X, Controller.NormalizedMousePosition.Y];
+            activeTile.shape.OutlineColor = Color.White;
+        }
+        
         public void Draw(RenderTarget target, RenderStates states)
         {
             states.Transform *= Transform;
@@ -57,12 +62,7 @@ namespace TowerDefence
                     target.Draw(tiles[i, j]);
                 }
             }
-            target.Draw(new CircleShape
-            {
-                Radius = 5,
-                Position = Controller.MousePosition,
-                FillColor = Controller.Click ? Color.Red : Color.Cyan,
-            });
+            target.Draw(activeTile);
         }
     }
 }
