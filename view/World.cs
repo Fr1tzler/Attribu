@@ -44,7 +44,7 @@ namespace TowerDefence
         public void SetTile(int x, int y, int id)
         {
             tiles[x, y] = new Tile(id);
-            tiles[x, y].Position = new Vector2f(x * Config.TILE_SIZE, y * Config.TILE_SIZE);
+            tiles[x, y].Position = MathModule.ViewTransform(x, y) + Config.PositionShift;
         }
 
         public void Draw(RenderTarget target, RenderStates states)
@@ -64,39 +64,5 @@ namespace TowerDefence
                 FillColor = Controller.Click ? Color.Red : Color.Cyan,
             });
         }
-    }
-
-    class Tile : Transformable, Drawable
-    {
-        public RectangleShape shape;
-
-        public Tile(int id)
-        {
-            shape = new RectangleShape {
-                Size = new Vector2f(Config.TILE_SIZE, Config.TILE_SIZE),
-                OutlineColor = Color.Black,
-                OutlineThickness = 1,
-                FillColor = getTileColor(id)
-            };
-        }
-
-        private Color getTileColor(int id)
-        {
-            if (id == TileID.Field) return Color.Green;
-            if (id == TileID.Road) return Color.Yellow;
-            return Color.Black;
-        }
-        
-        public void Draw(RenderTarget target, RenderStates states)
-        {
-            states.Transform *= Transform;
-            target.Draw(shape, states);
-        }
-    }
-
-    struct TileID
-    {
-        public static int Field = 0;
-        public static int Road = 1;
     }
 }

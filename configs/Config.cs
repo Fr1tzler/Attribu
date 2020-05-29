@@ -94,5 +94,6 @@ namespace TowerDefence
 
         public static uint ScreenWidth = VideoMode.DesktopMode.Width;
         public static uint ScreenHeight = VideoMode.DesktopMode.Height;
+        public static Vector2f PositionShift = new Vector2f(ScreenWidth / 2, 0);
     }
 }

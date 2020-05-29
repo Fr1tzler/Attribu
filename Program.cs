@@ -7,7 +7,11 @@ namespace TowerDefence
     class Program
     {
         public static RenderWindow window;
-
+        public static int currentState;
+        /*
+         * 0 - main scene
+         * 1 - menu
+         */
         static void Main(string[] args)
         {
             window = new RenderWindow(new VideoMode(Config.ScreenWidth, Config.ScreenHeight), "Tower Defence", Styles.Fullscreen);
@@ -22,8 +26,19 @@ namespace TowerDefence
             while (window.IsOpen)
             {
                 window.DispatchEvents();
-                Model.Update(0.1);
                 window.Clear(Color.Black);
+                switch (currentState)
+                {
+                    case 0:
+                        Model.Update(0.1);
+                        window.Draw(world);
+                        break;
+                    case 1:
+                        break;
+                    default:
+                        throw new Exception("ПОШЕЛ НАХУЙ, ПИДОРАС!");
+                }
+                Model.Update(0.1);
                 window.Draw(world);
                 window.Display();
             }

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "dqt9pekXWmXZp/HUwYXuBYkZW9lb5eQ+X2/tFA3L02U2//uE+cl0SE6t5/9rSMiLcaoVVERejPwzTiMwnPrQiw==",
+  "success": true,
+  "projectFilePath": "/home/fr1tzler/Projects/Attribu/Attribu.csproj",
+  "expectedPackageFiles": [
+    "/home/fr1tzler/.nuget/packages/csfml/2.5.0/csfml.2.5.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/netstandard.library/2.0.0/netstandard.library.2.0.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/nunit/3.12.0/nunit.3.12.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/sfml.audio/2.5.0/sfml.audio.2.5.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/sfml.graphics/2.5.0/sfml.graphics.2.5.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/sfml.net/2.5.0/sfml.net.2.5.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/sfml.system/2.5.0/sfml.system.2.5.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/sfml.window/2.5.0/sfml.window.2.5.0.nupkg.sha512",
+    "/home/fr1tzler/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.2/microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
