@@ -34,7 +34,7 @@ namespace TowerDefence
                 }
             }
             Towers.Add(tower);
-            Console.WriteLine("new nigger has born on" + tower.position);
+            Console.WriteLine("new tower has born on" + tower.position);
         }
         
         public static void Update(float deltaTime)
