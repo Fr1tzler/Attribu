@@ -32,6 +32,9 @@ namespace TowerDefence
             states.Transform *= Transform;
             target.Draw(shape, states);
         }
+        
+        //private static void MouseHover(object sender, EventArgs e) => shape;
+
     }
 
     struct TileID

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using SFML.Graphics;
 using SFML.System;
 
@@ -9,9 +11,11 @@ namespace TowerDefence
         public int SizeX, SizeY;
         public Tile[,] tiles;
         public Tile activeTile;
+        public List<Shape> Towers;
         
         public World(string[] map)
         {
+            Towers = new List<Shape>();
             char
                 Field = '_',
                 Road = 'r';
@@ -48,8 +52,27 @@ namespace TowerDefence
             {
                 tile.shape.OutlineColor = Color.Black;
             }
-            activeTile = tiles[Controller.NormalizedMousePosition.X, Controller.NormalizedMousePosition.Y];
-            activeTile.shape.OutlineColor = Color.White;
+
+            if (MathModule.CorrectVector(Controller.NormalizedMousePosition))
+            {
+                activeTile = tiles[Controller.NormalizedMousePosition.X, Controller.NormalizedMousePosition.Y];
+                activeTile.shape.OutlineColor = Color.White;
+            }
+            if (Model.Towers.Count != 0)
+            {
+                foreach (var tower in Model.Towers)
+                {
+                    Towers.Add(new CircleShape()
+                    {
+                        Radius = 10,
+                        Origin = new Vector2f(10, -Config.ScreenHeight / 50),
+                        Position = MathModule.ViewTransform((Vector2f) tower.position) + Config.PositionShift,
+                        FillColor = Color.Red,
+                        OutlineColor = Color.Black,
+                        OutlineThickness = 2
+                    });
+                }
+            }
         }
         
         public void Draw(RenderTarget target, RenderStates states)
@@ -62,7 +85,15 @@ namespace TowerDefence
                     target.Draw(tiles[i, j]);
                 }
             }
-            target.Draw(activeTile);
+            if (activeTile != null) 
+                target.Draw(activeTile);
+            if (Towers.Count != 0)
+            {
+                foreach (var tower in Towers)
+                {
+                    target.Draw(tower);
+                }
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 
 namespace TowerDefence
@@ -15,11 +16,12 @@ namespace TowerDefence
         static void Main(string[] args)
         {
             window = new RenderWindow(new VideoMode(Config.ScreenWidth, Config.ScreenHeight), "Tower Defence", Styles.Fullscreen);
-            window.SetMouseCursorVisible(false);
+            window.SetMouseCursorVisible(true);
             window.SetVerticalSyncEnabled(true);
             window.Closed += Window_Closed;
             window.Resized += Window_Resized;
-
+            window.MouseButtonPressed += Mouse_Handler;
+            
             var model = new Model();
             var world = new World(Config.Map);
             
@@ -37,6 +39,9 @@ namespace TowerDefence
             }
         }
 
+        private static void Mouse_Handler(object sender, MouseButtonEventArgs e) =>
+            Controller.MouseClicks.Enqueue((Vector2f) Mouse.GetPosition());
+        
         private static void Window_Closed(object sender, EventArgs e) => window.Close();
 
         private static void Window_Resized(object sender, SizeEventArgs e) =>

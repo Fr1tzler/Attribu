@@ -52,13 +52,15 @@ namespace TowerDefence
             new Vector2f(Config.ScreenWidth / 32 * (x - y), Config.ScreenHeight / 32 * (x + y));
 
         public static Vector2f ViewTransform(Vector2f vect) => ViewTransform(vect.X, vect.Y);
-        
+
         public static Vector2f ReverseViewTransform(float x, float y) => new Vector2f(
-            (float)Math.Ceiling(x * 16 / Config.ScreenWidth + y * 16 / Config.ScreenHeight), 
-            (float)Math.Ceiling(-x * 16 / Config.ScreenWidth + y * 16 / Config.ScreenHeight));
+            (float) Math.Ceiling(x * 16 / Config.ScreenWidth + y * 16 / Config.ScreenHeight),
+            (float) Math.Ceiling(-x * 16 / Config.ScreenWidth + y * 16 / Config.ScreenHeight));
 
         public static Vector2f ReverseViewTransform(Vector2f vect) => ReverseViewTransform(vect.X, vect.Y);
 
-        public static int NormalizePoint(double coordinate) => (int) Math.Min(16, Math.Max(1, coordinate)) - 1;
+        public static int NormalizePoint(double coordinate) => (int) Math.Ceiling(coordinate) - 1;
+
+        public static bool CorrectVector(Vector2i vect) => 0 <= vect.X && vect.X < 16 && 0 <= vect.Y && vect.Y < 16;
     }
 }

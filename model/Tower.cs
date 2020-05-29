@@ -82,7 +82,8 @@ namespace TowerDefence
             level = 1;
             lastShot = Time.Zero;
             position = _position;
-
+            
+            Abilities = new List<Ability>();
             Abilities.Add(new Absorption());
             Abilities.Add(new Replacing());
         }
@@ -115,12 +116,12 @@ namespace TowerDefence
 
     public class TheFirstTower : Tower
     {
-        TheFirstTower(Vector2i _position) : base (0, _position){}
+        public TheFirstTower(Vector2i _position) : base (0, _position){}
     }
 
     public class Windranger : Tower
     {
-        Windranger(Vector2i _position) : base (1, _position)
+        public Windranger(Vector2i _position) : base (1, _position)
         {
             Abilities.Add(new FocusFire());
         }
