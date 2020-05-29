@@ -22,7 +22,7 @@ namespace TowerDefence
                 {
                     var clickOnBoard = GetRectangleCoordinates(click);
                     if (MathModule.CorrectVector(clickOnBoard))
-                        Model.AddTower(new Windranger(clickOnBoard));
+                        Model.AddTower(clickOnBoard);
                 }
             }
 

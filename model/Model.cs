@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using SFML.System;
 
 namespace TowerDefence
 { 
@@ -22,26 +23,38 @@ namespace TowerDefence
             rand = new Random();
         }
 
-        public static void AddTower(Tower tower)
+        public static void AddTower(Vector2i position)
         {
-            if (Map[tower.position.Y][tower.position.X] != '_')
+            if (Map[position.Y][position.X] != '_')
             {
-                Console.WriteLine("unable to locate tower on " + tower.position + " : it's not a field");
+                Console.WriteLine("unable to locate tower on " + position + " : it's not a field");
                 return;
             }
             foreach (var tower1 in Towers)
             {
-                if (tower1.position == tower.position)
+                if (tower1.position == position)
                 {
-                    Console.WriteLine("unable to locate tower on " + tower.position + " : tower already exists");
+                    Console.WriteLine("unable to locate tower on " + position + " : tower already exists");
                     return;
                 }
             }
 
-            int towerId = rand.Next(Config.TowerConfigs.Count); // what's next???
+            int towerId = rand.Next(0, Config.TowerConfigs.Count);
+
+            switch (towerId)
+            {
+                case 0:
+                    Towers.Add(new TheFirstTower(position));
+                    break;
+                case 1:
+                    Towers.Add(new Windranger(position));
+                    break;
+                default:
+                    Towers.Add(new TheFirstTower(position));
+                    break;
+            }
             
-            Towers.Add(tower);
-            Console.WriteLine("new tower has born on" + tower.position);
+            Console.WriteLine("new " + Towers[Towers.Count - 1].configs.name + " has born on " + position);
         }
         
         public static void Update(float deltaTime)

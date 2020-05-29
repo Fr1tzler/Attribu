@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
@@ -16,6 +17,11 @@ namespace TowerDefence
             Agility,
             Intelligence
         }
+
+        public static Color[] AttributeColor = // poka net textur
+        {
+            Color.Red, Color.Green, Color.Blue, 
+        };
 
         public static Dictionary<int, Tower.Configs> TowerConfigs = 
             new Dictionary<int, Tower.Configs>()

@@ -67,7 +67,7 @@ namespace TowerDefence
                         Radius = 10,
                         Origin = new Vector2f(10, -Config.ScreenHeight / 50),
                         Position = MathModule.ViewTransform((Vector2f) tower.position) + Config.PositionShift,
-                        FillColor = Color.Red,
+                        FillColor = Config.AttributeColor[(int)tower.Attribute],
                         OutlineColor = Color.Black,
                         OutlineThickness = 2
                     });
