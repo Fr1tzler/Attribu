@@ -49,6 +49,20 @@ namespace TowerDefence
         /// <summary>
         /// Mob configurations
         /// </summary>
+        /// 
+        public static Dictionary<int, Mob.Configs> MobConfigs =
+            new Dictionary<int, Mob.Configs>()
+            {
+                [1] = new Mob.Configs(
+                    "Infantryman",
+                    3,
+                    0.3,
+                    1,
+                    0,
+                    0,
+                    0
+                ),
+            };
         
         public static Vector2i[] Path =
         {

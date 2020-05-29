@@ -6,17 +6,41 @@ namespace TowerDefence
 {
     public abstract class Mob
     {
-        public readonly string className;
+        public readonly struct Configs
+        {
+            public readonly string name;
         
-        public readonly int baseHealth;
-        public readonly int baseSpeed;
-        public readonly int damage;
-        public readonly int baseMagicalResist;
-        public readonly int baseArmor;
-        public readonly double evasion;
+            public readonly int baseHealth;
+            public readonly double baseSpeed;
+            public readonly int damage;
+            public readonly int baseMagicalResist;
+            public readonly int baseArmor;
+            public readonly double evasion;
+
+            public Configs(
+                string _name,
+                int _baseHealth,
+                double _baseSpeed,
+                int _damage,
+                int _baseMagicalResist,
+                int _baseArmor,
+                double _evasion
+                )
+            {
+                name = _name;
+                baseHealth = _baseHealth;
+                baseSpeed = _baseSpeed;
+                damage = _damage;
+                baseMagicalResist = _baseMagicalResist;
+                baseArmor = _baseArmor;
+                evasion = _evasion;
+            }
+        }
+
+        public Configs configs;
         
         public int currHealth;
-        public int currSpeed;
+        public double currSpeed;
         public int currMagicalResist;
         public int currArmor;
 
@@ -27,11 +51,16 @@ namespace TowerDefence
         public List<Ability> Abilities;
         public List<Buff> Buffes;
 
-        public int currentPathDestinaton;
-
-        public Mob()
+        public Mob(int mobId)
         {
-            // владек сделай уже список мобов не хватает я ебал как сильно
+            configs = Config.MobConfigs[mobId];
+            
+            currHealth = configs.baseHealth;
+            currSpeed = configs.baseSpeed;
+            currMagicalResist = configs.baseMagicalResist;
+            currArmor = configs.baseArmor;
+            
+            shift = new Vector2f(0, 0);
         }
         
         public bool Arrived
@@ -42,8 +71,13 @@ namespace TowerDefence
         public void Move(float deltaTime)
         {
             var delta = destination - position;
-            var deltaLength = MathModule.Length(delta * deltaTime);
-            position += delta * (float) (Math.Min(deltaTime * currSpeed / deltaLength, 1));
+            var deltaLength = MathModule.Length(delta);
+            position += delta * (float) (Math.Min(currSpeed / deltaLength, 1));
         }
+    }
+
+    public class Infantryman : Mob
+    {
+        Infantryman() : base(1){}
     }
 }
