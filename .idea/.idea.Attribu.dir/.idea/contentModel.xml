@@ -1,36 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/.Rider2019.3/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2019.3/system/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_.19.00" t="ExcludeRecursive" />
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
-      <e p=".vs" t="Include">
-        <e p="Attribu" t="Include">
-          <e p="xs" t="Include">
-            <e p="UserPrefs.xml" t="Include" />
-          </e>
-        </e>
-      </e>
-      <e p="Attribu.csproj" t="IncludeRecursive" />
-      <e p="Config.cs" t="Include" />
-      <e p="Controller.cs" t="Include" />
-      <e p="MathModule.cs" t="Include" />
-      <e p="Mob.cs" t="Include" />
-      <e p="Model.cs" t="Include" />
-      <e p="Program.cs" t="Include" />
-      <e p="Sources.cs" t="Include" />
-      <e p="TODO.txt" t="Include" />
-      <e p="Tower.cs" t="Include" />
-      <e p="View.cs" t="Include" />
-      <e p="bin" t="ExcludeRecursive" />
-      <e p="obj" t="ExcludeRecursive">
-        <e p="Debug" t="Include">
-          <e p="netcoreapp3.1" t="Include">
-            <e p="Attribu.AssemblyInfo.cs" t="Include" />
-          </e>
-        </e>
-      </e>
-      <e p="packages" t="ExcludeRecursive" />
-    </e>
+    <e p="C:\Users\muxa2\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\muxa2\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="D:\Edu\proga\Attribu" t="IncludeFlat" />
   </component>
 </project>

@@ -10,12 +10,16 @@ namespace TowerDefence
 
         public static List<Mob> Wave;
         public static List<Tower> Towers;
+
+        public static Random rand;
         
         public Model()
         {
             Map = Config.Map;
             Wave = new List<Mob>();
             Towers = new List<Tower>();
+            
+            rand = new Random();
         }
 
         public static void AddTower(Tower tower)
@@ -33,6 +37,9 @@ namespace TowerDefence
                     return;
                 }
             }
+
+            int towerId = rand.Next(Config.TowerConfigs.Count); // what's next???
+            
             Towers.Add(tower);
             Console.WriteLine("new tower has born on" + tower.position);
         }
