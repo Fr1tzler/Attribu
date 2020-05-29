@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "FpvW3iaw6xLI+4MJdtBGcb6yMTnrDmMjefGMeYAZi5GuODyPT3s0lr5O5k8S9gVe+J2OwaWSWqMHWIcjF59Ubg==",
+  "success": true,
+  "projectFilePath": "D:\\Edu\\proga\\Attribu\\Attribu.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\muxa2\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\muxa2\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\muxa2\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\muxa2\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\muxa2\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\muxa2\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
