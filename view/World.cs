@@ -89,7 +89,7 @@ namespace TowerDefence
                 {
                     foreach (var tower in Model.Towers)
                     {
-                        Towers.Add(new CircleShape()
+                        /*Towers.Add(new CircleShape()
                         {
                             Radius = 10,
                             Origin = new Vector2f(10, -10),
@@ -97,14 +97,14 @@ namespace TowerDefence
                             FillColor = Config.AttributeColor[(int) tower.Attribute],
                             OutlineColor = Color.Black,
                             OutlineThickness = 2
-                        });
+                        });*/
 
                         Towers.Add(new RectangleShape()
                         {
                             Size = new Vector2f(100, 100),
                             Origin = new Vector2f(50, 50),
                             Position = MathModule.ViewTransform((Vector2f) tower.position) + Config.PositionShift,
-                            Texture = Sources.TowerTextures[1]
+                            Texture = tower.configs.texture
                         });
                     }
                 }

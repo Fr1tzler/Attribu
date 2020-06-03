@@ -23,31 +23,38 @@ namespace TowerDefence
             Color.Red, Color.Green, Color.Blue, 
         };
 
-        public static Dictionary<int, Tower.Configs> TowerConfigs = 
-            new Dictionary<int, Tower.Configs>()
-        {
-            [0] = new Tower.Configs(
-                "Fritzler",
-                Attribute.Strength,
-                true,
-                false,
-                0,
-                0,
-                1,
-                2,
-                1.7),
-            [1] = new Tower.Configs(
-                "Windranger",
-                Attribute.Intelligence,
-                true,
-                false,
-                0,
-                0,
-                1,
-                2,
-                1.7),
-        };
+        public static Dictionary<int, Tower.Configs> TowerConfigs;
 
+        public static void Load()
+        {
+            TowerConfigs = 
+                new Dictionary<int, Tower.Configs>()
+                {
+                    [0] = new Tower.Configs(
+                        "Fritzler",
+                        Attribute.Strength,
+                        true,
+                        false,
+                        0,
+                        0,
+                        1,
+                        2,
+                        1.7,
+                        Sources.TowerTextures[1]),
+                    [1] = new Tower.Configs(
+                        "Windranger",
+                        Attribute.Intelligence,
+                        true,
+                        false,
+                        0,
+                        0,
+                        1,
+                        2,
+                        1.7,
+                        Sources.TowerTextures[3]),
+                };
+        }
+        
         public static int TowerMaxLevel = 6;
         public static int BaseMeleeAttackRadius = 2;
         public static int BaseRangeAttackRadius = 3;

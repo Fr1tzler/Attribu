@@ -23,8 +23,8 @@ namespace TowerDefence
             window.Resized += Window_Resized;
             window.MouseButtonPressed += Mouse_Handler;
             
-            var model = new Model();
             var world = new World(Config.Map);
+            var model = new Model();
             
             var time = DateTime.Now;
             var frameCount = 0;

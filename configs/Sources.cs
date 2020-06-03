@@ -6,9 +6,24 @@ namespace TowerDefence
 {
     static class Sources
     {
+        /*
+        /// <summary>
+        /// LINUX
+        /// </summary>
+        
         public const string TexturePath = "src/textures/";
         public const string FontPath = "src/fonts/";
         public const string CurrStyle = "ice01/";
+        */
+        
+        /// <summary>
+        /// WINDOWS
+        /// </summary>
+        
+        public const string TexturePath = "src\\textures\\";
+        public const string FontPath = "src\\fonts\\";
+        public const string CurrStyle = "ice01\\";
+
         public static Dictionary<int, Texture> TowerTextures;
         public static Dictionary<int, Texture> TileTextures;
         public static Font FPSfont;
@@ -32,7 +47,9 @@ namespace TowerDefence
             
             TowerTextures = new Dictionary<int, Texture>()
             {
-                [1] = new Texture(TexturePath + "tower1.png")
+                [1] = new Texture(TexturePath + "tower1.png"),
+                [2] = new Texture(TexturePath + "tower2.png"),
+                [3] = new Texture(TexturePath + "tower3.png"),
             };
             
             FPSfont = new Font(FontPath + "font.ttf");

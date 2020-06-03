@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using SFML.Graphics;
 using SFML.System;
 
 namespace TowerDefence
@@ -18,6 +19,7 @@ namespace TowerDefence
             public readonly int baseDamage;
             public readonly double baseAttackRange;
             public readonly double baseAttackTime;
+            public readonly Texture texture;
 
             public Configs(
                 string _name,
@@ -28,7 +30,8 @@ namespace TowerDefence
                 int _baseManaRegen,
                 int _baseDamage,
                 double _baseAttackRange,
-                double _baseAttackTime)
+                double _baseAttackTime,
+                Texture _texture)
             {
                 name = _name;
                 baseAttribute = _baseAttribute;
@@ -39,6 +42,7 @@ namespace TowerDefence
                 baseDamage = _baseDamage;
                 baseAttackRange = _baseAttackRange;
                 baseAttackTime = _baseAttackTime;
+                texture = _texture;
             }
         }
 

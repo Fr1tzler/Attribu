@@ -17,6 +17,7 @@ namespace TowerDefence
         
         public Model()
         {
+            Config.Load();
             Map = Config.Map;
             Wave = new List<Mob>();
             Towers = new List<Tower>();
