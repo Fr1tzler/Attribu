@@ -48,13 +48,75 @@ namespace TowerDefence
             {
                 for (int j = 0; j < y; j++)
                 {
-                    //Console.WriteLine("calc" + x + ' ' + y);
                     if (src[j][i] != 'r')
                     {
-                        result[i, j] = 0;
+                        result[i, j] = MathModule.RandInt(0, 1);
                         continue;
                     }
 
+                    var up = false;
+                    var down = false;
+                    var left = false;
+                    var right = false;
+
+                    if (0 < i)
+                    {
+                        if (src[j][i - 1] == 'r')
+                        {
+                            left = true;
+                        }
+                    }
+                    if (i < x - 1)
+                    {
+                        if (src[j][i + 1] == 'r')
+                        {
+                            right = true;
+                        }
+                    }
+                    if (0 < j)
+                    {
+                        if (src[j - 1][i] == 'r')
+                        {
+                            up = true;
+                        }
+                    }
+                    if (j < y - 1)
+                    {
+                        if (src[j + 1][i] == 'r')
+                        {
+                            down = true;
+                        }
+                    }
+                    if (up && down && !left && !right)
+                    {
+                        result[i, j] = 9;
+                        continue;
+                    }
+                    if (!up && !down && left && right)
+                    {
+                        result[i, j] = 8;
+                        continue;
+                    }
+                    if (up && !down && !left && right)
+                    {
+                        result[i, j] = 3;
+                        continue;
+                    }
+                    if (up && !down && left && !right)
+                    {
+                        result[i, j] = 4;
+                        continue;
+                    }
+                    if (!up && down && !left && right)
+                    {
+                        result[i, j] = 5;
+                        continue;
+                    }
+                    if (!up && down && left && !right)
+                    {
+                        result[i, j] = 6;
+                        continue;
+                    }
                     result[i, j] = 7;
                 }
             }
@@ -89,7 +151,7 @@ namespace TowerDefence
                 {
                     foreach (var tower in Model.Towers)
                     {
-                        Towers.Add(new CircleShape()
+                        /*Towers.Add(new CircleShape()
                         {
                             Radius = 10,
                             Origin = new Vector2f(10, -10),
@@ -97,14 +159,14 @@ namespace TowerDefence
                             FillColor = Config.AttributeColor[(int) tower.Attribute],
                             OutlineColor = Color.Black,
                             OutlineThickness = 2
-                        });
+                        });*/
 
                         Towers.Add(new RectangleShape()
                         {
                             Size = new Vector2f(100, 100),
                             Origin = new Vector2f(50, 50),
                             Position = MathModule.ViewTransform((Vector2f) tower.position) + Config.PositionShift,
-                            Texture = Sources.TowerTextures[1]
+                            Texture = tower.configs.texture
                         });
                     }
                 }

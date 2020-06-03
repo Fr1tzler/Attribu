@@ -7,14 +7,17 @@ namespace TowerDefence
 {
     class Program
     {
+        public static PlatformID OSFamily = Environment.OSVersion.Platform;
         public static RenderWindow window;
         public static int currentState;
         /*
          * 0 - main scene
          * 1 - menu
          */
+
         static void Main(string[] args)
         {
+
             window = new RenderWindow(new VideoMode(Config.ScreenWidth, Config.ScreenHeight), 
                 "The Attribu", Styles.Fullscreen);
             window.SetMouseCursorVisible(true);
@@ -23,8 +26,8 @@ namespace TowerDefence
             window.Resized += Window_Resized;
             window.MouseButtonPressed += Mouse_Handler;
             
-            var model = new Model();
             var world = new World(Config.Map);
+            var model = new Model();
             
             var time = DateTime.Now;
             var frameCount = 0;

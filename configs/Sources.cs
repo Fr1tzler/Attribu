@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
@@ -6,9 +7,10 @@ namespace TowerDefence
 {
     static class Sources
     {
-        public const string TexturePath = "src/textures/";
-        public const string FontPath = "src/fonts/";
-        public const string CurrStyle = "ice01/";
+        public static string TexturePath;
+        public static string FontPath;
+        public static string CurrStyle;
+        
         public static Dictionary<int, Texture> TowerTextures;
         public static Dictionary<int, Texture> TileTextures;
         public static Font FPSfont;
@@ -16,6 +18,15 @@ namespace TowerDefence
 
         public static void Load()
         {
+            var divider = "\\";
+            if (Program.OSFamily == PlatformID.Unix)
+            {
+                divider = "/";
+            }
+            TexturePath = "src" + divider + "textures" + divider;
+            FontPath = "src" + divider + "fonts" + divider;
+            CurrStyle = "ice01" + divider;
+            
             TileTextures = new Dictionary<int, Texture>()
             {
                 [0] = new Texture(TexturePath + CurrStyle + "field_1.png"),
@@ -32,7 +43,9 @@ namespace TowerDefence
             
             TowerTextures = new Dictionary<int, Texture>()
             {
-                [1] = new Texture(TexturePath + "tower1.png")
+                [1] = new Texture(TexturePath + "tower1.png"),
+                [2] = new Texture(TexturePath + "tower2.png"),
+                [3] = new Texture(TexturePath + "tower3.png"),
             };
             
             FPSfont = new Font(FontPath + "font.ttf");

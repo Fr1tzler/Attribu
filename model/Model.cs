@@ -12,16 +12,15 @@ namespace TowerDefence
         public static List<Mob> Wave;
         public static List<Tower> Towers;
 
-        public static Random rand;
         public static bool TowerListChanged;
         
         public Model()
         {
+            Config.Load();
             Map = Config.Map;
             Wave = new List<Mob>();
             Towers = new List<Tower>();
             
-            rand = new Random();
             TowerListChanged = false;
         }
 
@@ -42,7 +41,7 @@ namespace TowerDefence
                 }
             }
 
-            int towerId = rand.Next(0, Config.TowerConfigs.Count);
+            int towerId = MathModule.RandInt(0, Config.TowerConfigs.Count);
 
             switch (towerId)
             {

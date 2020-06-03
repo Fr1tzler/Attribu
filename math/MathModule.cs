@@ -17,6 +17,13 @@ namespace TowerDefence
    / XXXXXX /
   (________(                
    `-----*/
+        public static Random rand = new Random();
+        
+        public static int RandInt(int minValue, int maxValue)
+        {
+            return rand.Next(minValue, maxValue);
+        }
+
         public static double Length(Vector2f vect)
         {
             return Math.Sqrt(vect.X * vect.X + vect.Y * vect.Y);
