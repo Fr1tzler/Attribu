@@ -9,19 +9,22 @@ namespace TowerDefence
     class World : Transformable, Drawable
     {
         public int SizeX, SizeY;
+        public int[,] intMap;
         public Tile[,] tiles;
         public Tile activeTile;
         public List<Shape> Towers;
-        
-        public World(string[] map)
-        {
-            Towers = new List<Shape>();
-            char
-                Field = '_',
-                Road = 'r';
 
-            SizeX = map[0].Length;
-            SizeY = map.Length;
+        public List<Image> ImageTowers;
+        
+        public World(string[] srcMap)
+        {
+            Sources.Load();
+            intMap = ConstructMap(srcMap);
+            
+            Towers = new List<Shape>();
+
+            SizeX = srcMap[0].Length;
+            SizeY = srcMap.Length;
 
             tiles = new Tile[SizeX, SizeY];
 
@@ -29,17 +32,36 @@ namespace TowerDefence
             {
                 for (int j = 0; j < SizeY; j++)
                 {
-                    if (map[j][i] == Field)
-                    {
-                        SetTile(i, j, TileID.Field);
-                    }
-                    else if (map[j][i] == Road)
-                    {
-                        SetTile(i, j, TileID.Road);
-                    }
+                    SetTile(i, j, intMap[i, j]);
                 }
             }
         }
+
+        public int[,] ConstructMap(string[] src)
+        {
+            int
+                x = src[0].Length,
+                y = src.Length;
+            var result = new int[x, y];
+
+            for (int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+                    //Console.WriteLine("calc" + x + ' ' + y);
+                    if (src[j][i] != 'r')
+                    {
+                        result[i, j] = 0;
+                        continue;
+                    }
+
+                    result[i, j] = 7;
+                }
+            }
+            
+            return result;
+        }
+        
         public void SetTile(int x, int y, int id)
         {
             tiles[x, y] = new Tile(id);
@@ -70,6 +92,21 @@ namespace TowerDefence
                         FillColor = Config.AttributeColor[(int)tower.Attribute],
                         OutlineColor = Color.Black,
                         OutlineThickness = 2
+                    });
+                    
+                    var currTower = Sources.tower1;
+                    var currTexture = new Texture(currTower);
+                    currTexture.Smooth = true;
+                    
+                    Towers.Add(new RectangleShape()
+                    {
+                        Size = new Vector2f(100, 100),
+                        Origin = new Vector2f(50, 50),
+                        Position = MathModule.ViewTransform((Vector2f) tower.position) + Config.PositionShift,
+                        Texture = currTexture,
+                        //FillColor = Config.AttributeColor[(int)tower.Attribute],
+                        //OutlineColor = Color.Black,
+                        //OutlineThickness = 2
                     });
                 }
             }

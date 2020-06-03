@@ -12,7 +12,8 @@ namespace TowerDefence
             {
                 OutlineColor = Color.Black,
                 OutlineThickness = 2,
-                FillColor = getTileColor(id)
+                Texture = new Texture(Sources.TileTextures[id])
+                //FillColor = getTileColor(id)
             };
             shape.SetPoint(0, MathModule.ViewTransform(0, 0));
             shape.SetPoint(1, MathModule.ViewTransform(0, 1));

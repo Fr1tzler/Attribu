@@ -15,4 +15,17 @@
       <Folder Include="obj\Debug\netcoreapp3.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="obj\Debug\src\textures\ice01\field_1.png" />
+      <Content Include="obj\Debug\src\textures\ice01\field_2.png" />
+      <Content Include="obj\Debug\src\textures\ice01\field_3.png" />
+      <Content Include="obj\Debug\src\textures\ice01\road_corn_dl.png" />
+      <Content Include="obj\Debug\src\textures\ice01\road_corn_dr.png" />
+      <Content Include="obj\Debug\src\textures\ice01\road_corn_ul.png" />
+      <Content Include="obj\Debug\src\textures\ice01\road_corn_ur.png" />
+      <Content Include="obj\Debug\src\textures\ice01\road_cross.png" />
+      <Content Include="obj\Debug\src\textures\ice01\road_horiz.png" />
+      <Content Include="obj\Debug\src\textures\ice01\road_vert.png" />
+    </ItemGroup>
+
 </Project>
