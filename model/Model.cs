@@ -13,6 +13,7 @@ namespace TowerDefence
         public static List<Tower> Towers;
 
         public static Random rand;
+        public static bool TowerListChanged;
         
         public Model()
         {
@@ -21,20 +22,22 @@ namespace TowerDefence
             Towers = new List<Tower>();
             
             rand = new Random();
+            TowerListChanged = false;
         }
 
         public static void AddTower(Vector2i position)
         {
+            TowerListChanged = true;
             if (Map[position.Y][position.X] != '_')
             {
-                Console.WriteLine("unable to locate tower on " + position + " : it's not a field");
+                //Console.WriteLine("unable to locate tower on " + position + " : it's not a field");
                 return;
             }
             foreach (var tower1 in Towers)
             {
                 if (tower1.position == position)
                 {
-                    Console.WriteLine("unable to locate tower on " + position + " : tower already exists");
+                    //Console.WriteLine("unable to locate tower on " + position + " : tower already exists");
                     return;
                 }
             }

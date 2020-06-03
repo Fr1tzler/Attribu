@@ -26,8 +26,21 @@ namespace TowerDefence
             var model = new Model();
             var world = new World(Config.Map);
             
+            var time = DateTime.Now;
+            var frameCount = 0;
+            
+            var FPS = new Text()
+            {
+                Position = new Vector2f(0, 0),
+                FillColor = Color.White,
+                CharacterSize = 40,
+                Font = Sources.FPSfont
+            };
+
             while (window.IsOpen)
             {
+                frameCount++;
+                
                 window.DispatchEvents();
                 window.Clear(Color.Black);
                 
@@ -36,6 +49,15 @@ namespace TowerDefence
                 world.Update();
                 
                 window.Draw(world);
+
+                if ((DateTime.Now - time).TotalSeconds > 0.1)
+                {
+                    time = DateTime.Now;
+                    FPS.DisplayedString = frameCount*10 + "";
+                    frameCount = 0;
+                }
+                window.Draw(FPS);
+                
                 window.Display();
             }
         }
