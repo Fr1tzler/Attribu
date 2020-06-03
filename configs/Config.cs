@@ -63,6 +63,7 @@ namespace TowerDefence
         /// World configurations
         /// </summary>
         public static int HomeHP = 50;
+        public static Time WaveTime = Time.FromSeconds(0.5f);
         public static string[] Map =
         {
             "________________",
@@ -123,7 +124,7 @@ namespace TowerDefence
                     [1] = new Mob.Configs(
                         "Infantryman",
                         3,
-                        0.01,
+                        0.005,
                         1,
                         0,
                         0,

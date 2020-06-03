@@ -6,23 +6,25 @@ using SFML.System;
 namespace TowerDefence
 { 
     class Model
-    {
+    { 
+        public static Clock WaveClock;
         public static int HomeHP;
         public static string[] Map;
-
         public static List<Mob> Wave;
         public static List<Tower> Towers;
-
+        public static Queue<Mob> WaveQueue;
+        
         public static bool TowerListChanged;
         
         public Model()
         {
             Config.Load();
+            WaveClock = new Clock();
             HomeHP = Config.HomeHP;
             Map = Config.Map;
             Wave = new List<Mob>();
             Towers = new List<Tower>();
-            
+            WaveQueue = new Queue<Mob>();
             TowerListChanged = false;
         }
 
@@ -67,15 +69,25 @@ namespace TowerDefence
             switch (WaveId)
             {
                 case 0:
-                    Wave.Add(new Infantryman());
+                    for (var i = 0; i < 20; i++)
+                    {
+                        WaveQueue.Enqueue(new Infantryman());
+                    }
                     break;
                 default:
                     break;
             }
+
+            WaveClock.Restart();
         }
         
         public static void Update(float deltaTime)
         {
+            if (WaveQueue.Count != 0 && WaveClock.ElapsedTime >= Config.WaveTime)
+            {
+                Wave.Add(WaveQueue.Dequeue());
+                WaveClock.Restart();
+            }
             if (Wave.Count != 0)
             {
                 foreach (var mob in Wave)
