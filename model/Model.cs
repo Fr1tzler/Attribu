@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using System.Linq;
 using SFML.System;
 
 namespace TowerDefence
 { 
     class Model
     {
+        public static int HomeHP;
         public static string[] Map;
 
         public static List<Mob> Wave;
@@ -17,6 +18,7 @@ namespace TowerDefence
         public Model()
         {
             Config.Load();
+            HomeHP = Config.HomeHP;
             Map = Config.Map;
             Wave = new List<Mob>();
             Towers = new List<Tower>();
@@ -58,13 +60,45 @@ namespace TowerDefence
             
             Console.WriteLine("new " + Towers[Towers.Count - 1].configs.name + " has born on " + position);
         }
+
+        public static void NewWave(int WaveId)
+        {
+            Console.WriteLine("NEW NIGGER BORN WITH ID " + WaveId);
+            switch (WaveId)
+            {
+                case 0:
+                    Wave.Add(new Infantryman());
+                    break;
+                default:
+                    break;
+            }
+        }
         
         public static void Update(float deltaTime)
         {
-            /*foreach (var mob in Wave)
+            if (Wave.Count != 0)
             {
-                mob.Move(deltaTime);
-            }*/
+                foreach (var mob in Wave)
+                {
+                    mob.Move(deltaTime);
+                    //Console.WriteLine(mob.position);
+                }
+            }
+
+            // тут башни стукают по мобам и двигают табуретки
+            
+            foreach (var mob in Wave)
+            {
+                if (mob.ArrivedToBase())
+                {
+                    HomeHP -= mob.configs.damage;
+                    mob.currHealth = 0;
+                }
+            }
+            
+            Wave = Wave
+                .Where(mob => !mob.IsDead())
+                .ToList();
         }
     }
 }

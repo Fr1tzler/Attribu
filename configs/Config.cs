@@ -10,7 +10,6 @@ namespace TowerDefence
         /// <summary>
         /// Tower configurations
         /// </summary>
-        
         public enum Attribute
         {
             Strength,
@@ -20,41 +19,12 @@ namespace TowerDefence
 
         public static Color[] AttributeColor = // poka net textur
         {
-            Color.Red, Color.Green, Color.Blue, 
+            Color.Red, Color.Green, Color.Blue,
         };
 
         public static Dictionary<int, Tower.Configs> TowerConfigs;
 
-        public static void Load()
-        {
-            TowerConfigs = 
-                new Dictionary<int, Tower.Configs>()
-                {
-                    [0] = new Tower.Configs(
-                        "Fritzler",
-                        Attribute.Strength,
-                        true,
-                        false,
-                        0,
-                        0,
-                        1,
-                        2,
-                        1.7,
-                        Sources.TowerTextures[1]),
-                    [1] = new Tower.Configs(
-                        "Windranger",
-                        Attribute.Intelligence,
-                        true,
-                        false,
-                        0,
-                        0,
-                        1,
-                        2,
-                        1.7,
-                        Sources.TowerTextures[3]),
-                };
-        }
-        
+
         public static int TowerMaxLevel = 6;
         public static int BaseMeleeAttackRadius = 2;
         public static int BaseRangeAttackRadius = 3;
@@ -63,40 +33,36 @@ namespace TowerDefence
         /// Mob configurations
         /// </summary>
         /// 
-        public static Dictionary<int, Mob.Configs> MobConfigs =
-            new Dictionary<int, Mob.Configs>()
-            {
-                [1] = new Mob.Configs(
-                    "Infantryman",
-                    3,
-                    0.3,
-                    1,
-                    0,
-                    0,
-                    0
-                ),
-            };
-        
-        public static Vector2i[] Path =
+        public static Dictionary<int, Mob.Configs> MobConfigs;
+
+        public static Dictionary<int, List<int>> WaveConfigs = new Dictionary<int, List<int>>();
+
+        public static void LoadWave(int waveId)
         {
-            new Vector2i(2, 1),
-            new Vector2i(2, 6),
-            new Vector2i(13, 6),
-            new Vector2i(13, 2),
-            new Vector2i(9, 2),
-            new Vector2i(9, 13),
-            new Vector2i(13, 13),
-            new Vector2i(13, 9),
-            new Vector2i(2, 9),
-            new Vector2i(2, 13),
-            new Vector2i(6, 13),
-            new Vector2i(6, 0)
+            WaveConfigs[waveId] = new List<int>();
+            WaveConfigs[waveId].Add(0);
+        }
+
+        public static Vector2f[] Path =
+        {
+            new Vector2f(2, 1),
+            new Vector2f(2, 6),
+            new Vector2f(13, 6),
+            new Vector2f(13, 2),
+            new Vector2f(9, 2),
+            new Vector2f(9, 13),
+            new Vector2f(13, 13),
+            new Vector2f(13, 9),
+            new Vector2f(2, 9),
+            new Vector2f(2, 13),
+            new Vector2f(6, 13),
+            new Vector2f(6, 0)
         };
-        
+
         /// <summary>
-        /// View configurations
+        /// World configurations
         /// </summary>
-        
+        public static int HomeHP = 50;
         public static string[] Map =
         {
             "________________",
@@ -122,5 +88,49 @@ namespace TowerDefence
         public static uint ScreenWidth = VideoMode.DesktopMode.Width;
         public static uint ScreenHeight = VideoMode.DesktopMode.Height;
         public static Vector2f PositionShift = new Vector2f(ScreenWidth / 2, 10);
+
+        public static void Load()
+        {
+            TowerConfigs =
+                new Dictionary<int, Tower.Configs>()
+                {
+                    [0] = new Tower.Configs(
+                        "Fritzler",
+                        Attribute.Strength,
+                        true,
+                        false,
+                        0,
+                        0,
+                        1,
+                        2,
+                        1.7,
+                        Sources.TowerTextures[1]),
+                    [1] = new Tower.Configs(
+                        "Windranger",
+                        Attribute.Intelligence,
+                        true,
+                        false,
+                        0,
+                        0,
+                        1,
+                        2,
+                        1.7,
+                        Sources.TowerTextures[3]),
+                };
+            MobConfigs =
+                new Dictionary<int, Mob.Configs>()
+                {
+                    [1] = new Mob.Configs(
+                        "Infantryman",
+                        3,
+                        0.01,
+                        1,
+                        0,
+                        0,
+                        0,
+                        Sources.MobTextures[1]
+                    ),
+                };
+        }
     }
 }

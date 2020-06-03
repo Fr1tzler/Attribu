@@ -13,8 +13,15 @@ namespace TowerDefence
 
         public static Queue<Vector2f> MouseClicks = new Queue<Vector2f>();
 
+        private static bool pressM;
+        
         public static void Update()
         {
+            if (Model.HomeHP <= 0)
+            {
+                Program.currentState = 2;
+                return;
+            }
             if (MouseClicks.Count > 0)
             {
                 var click = MouseClicks.Dequeue();
@@ -26,6 +33,19 @@ namespace TowerDefence
                 }
             }
 
+            if (pressM == false)
+            {
+                if (Keyboard.IsKeyPressed(Keyboard.Key.M))
+                {
+                    pressM = true;
+                    Model.NewWave(0);
+                }
+            }
+            else if (!Keyboard.IsKeyPressed(Keyboard.Key.M))
+            {
+                pressM = false;
+            } 
+            
             MousePosition = (Vector2f) Mouse.GetPosition();
             NormalizedMousePosition = GetRectangleCoordinates(MousePosition);
         }

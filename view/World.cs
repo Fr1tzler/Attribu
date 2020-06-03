@@ -13,6 +13,7 @@ namespace TowerDefence
         public Tile[,] tiles;
         public Tile activeTile;
         public List<Shape> Towers;
+        public List<Shape> Mobs;
 
         public List<Image> ImageTowers;
 
@@ -22,6 +23,7 @@ namespace TowerDefence
             intMap = ConstructMap(srcMap);
 
             Towers = new List<Shape>();
+            Mobs = new List<Shape>();
 
             SizeX = srcMap[0].Length;
             SizeY = srcMap.Length;
@@ -66,6 +68,7 @@ namespace TowerDefence
                             left = true;
                         }
                     }
+
                     if (i < x - 1)
                     {
                         if (src[j][i + 1] == 'r')
@@ -73,6 +76,7 @@ namespace TowerDefence
                             right = true;
                         }
                     }
+
                     if (0 < j)
                     {
                         if (src[j - 1][i] == 'r')
@@ -80,6 +84,7 @@ namespace TowerDefence
                             up = true;
                         }
                     }
+
                     if (j < y - 1)
                     {
                         if (src[j + 1][i] == 'r')
@@ -87,42 +92,49 @@ namespace TowerDefence
                             down = true;
                         }
                     }
+
                     if (up && down && !left && !right)
                     {
                         result[i, j] = 9;
                         continue;
                     }
+
                     if (!up && !down && left && right)
                     {
                         result[i, j] = 8;
                         continue;
                     }
+
                     if (up && !down && !left && right)
                     {
                         result[i, j] = 3;
                         continue;
                     }
+
                     if (up && !down && left && !right)
                     {
                         result[i, j] = 4;
                         continue;
                     }
+
                     if (!up && down && !left && right)
                     {
                         result[i, j] = 5;
                         continue;
                     }
+
                     if (!up && down && left && !right)
                     {
                         result[i, j] = 6;
                         continue;
                     }
+
                     result[i, j] = 7;
                 }
             }
 
             return result;
-        }
+        } // хуита но робит и влом менять
 
         public void SetTile(int x, int y, int id)
         {
@@ -151,16 +163,6 @@ namespace TowerDefence
                 {
                     foreach (var tower in Model.Towers)
                     {
-                        /*Towers.Add(new CircleShape()
-                        {
-                            Radius = 10,
-                            Origin = new Vector2f(10, -10),
-                            Position = MathModule.ViewTransform((Vector2f) tower.position) + Config.PositionShift,
-                            FillColor = Config.AttributeColor[(int) tower.Attribute],
-                            OutlineColor = Color.Black,
-                            OutlineThickness = 2
-                        });*/
-
                         Towers.Add(new RectangleShape()
                         {
                             Size = new Vector2f(100, 100),
@@ -171,11 +173,37 @@ namespace TowerDefence
                     }
                 }
 
-                Towers.Sort(CompareTowersDepth);
+                Towers.Sort(CompareSpriteDepth);
             }
+
+            Mobs.Clear();
+            if (Model.Wave.Count != 0)
+            {
+                foreach (var mob in Model.Wave)
+                {
+                    /*Mobs.Add(new CircleShape()
+                    {
+                        Radius = 10,
+                        Origin = new Vector2f(10, -10),
+                        Position = MathModule.ViewTransform(mob.position) + mob.shift + Config.PositionShift,
+                        FillColor = Color.Black,
+                        OutlineColor = Color.Black,
+                        OutlineThickness = 2
+                    });*/
+
+                    Mobs.Add(new RectangleShape()
+                    {
+                        Size = new Vector2f(40, 50),
+                        Origin = new Vector2f(20, 20),
+                        Position = MathModule.ViewTransform((Vector2f) mob.position) + Config.PositionShift,
+                        Texture = mob.configs.texture
+                    });
+                }
+            }
+            Mobs.Sort(CompareSpriteDepth);
         }
 
-        private static int CompareTowersDepth(Shape A, Shape B) => (A.Position.Y).CompareTo(B.Position.Y);
+        private static int CompareSpriteDepth(Shape A, Shape B) => (A.Position.Y).CompareTo(B.Position.Y);
 
         public void Draw(RenderTarget target, RenderStates states)
         {
@@ -193,6 +221,11 @@ namespace TowerDefence
             foreach (var tower in Towers)
             {
                 target.Draw(tower);
+            }
+
+            foreach (var mob in Mobs)
+            {
+                target.Draw(mob);
             }
         }
     }

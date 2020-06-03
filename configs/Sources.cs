@@ -13,6 +13,7 @@ namespace TowerDefence
         
         public static Dictionary<int, Texture> TowerTextures;
         public static Dictionary<int, Texture> TileTextures;
+        public static Dictionary<int, Texture> MobTextures;
         public static Font FPSfont;
         public static Image tower1;
 
@@ -44,6 +45,13 @@ namespace TowerDefence
             TowerTextures = new Dictionary<int, Texture>()
             {
                 [1] = new Texture(TexturePath + "tower1.png"),
+                [2] = new Texture(TexturePath + "tower2.png"),
+                [3] = new Texture(TexturePath + "tower3.png"),
+            };
+            
+            MobTextures = new Dictionary<int, Texture>()
+            {
+                [1] = new Texture(TexturePath + "mob0.png"),
                 [2] = new Texture(TexturePath + "tower2.png"),
                 [3] = new Texture(TexturePath + "tower3.png"),
             };
