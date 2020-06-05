@@ -118,13 +118,14 @@ namespace TowerDefence
                         1.7,
                         Sources.TowerTextures[3]),
                 };
+            
             MobConfigs =
                 new Dictionary<int, Mob.Configs>()
                 {
                     [1] = new Mob.Configs(
                         "Infantryman",
                         3,
-                        0.005,
+                        0.015,
                         1,
                         0,
                         0,

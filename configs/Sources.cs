@@ -9,6 +9,7 @@ namespace TowerDefence
     {
         public static string TexturePath;
         public static string FontPath;
+        public static List<string> StyleList;
         public static string CurrStyle;
         
         public static Dictionary<int, Texture> TowerTextures;
@@ -26,7 +27,12 @@ namespace TowerDefence
             }
             TexturePath = "src" + divider + "textures" + divider;
             FontPath = "src" + divider + "fonts" + divider;
-            CurrStyle = "ice01" + divider;
+            StyleList = new List<string>()
+            {
+                "ice01",
+                "lava02"
+            };
+            CurrStyle = StyleList[0] + divider;
             
             TileTextures = new Dictionary<int, Texture>()
             {
