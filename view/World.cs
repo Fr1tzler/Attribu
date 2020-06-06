@@ -52,7 +52,7 @@ namespace TowerDefence
                 {
                     if (src[j][i] != 'r')
                     {
-                        result[i, j] = MathModule.RandInt(0, 1);
+                        result[i, j] = MathModule.RandInt(0, 3);
                         continue;
                     }
 
@@ -95,41 +95,41 @@ namespace TowerDefence
 
                     if (up && down && !left && !right)
                     {
-                        result[i, j] = 9;
+                        result[i, j] = 3;
                         continue;
                     }
 
                     if (!up && !down && left && right)
                     {
-                        result[i, j] = 8;
+                        result[i, j] = 4;
                         continue;
                     }
 
                     if (up && !down && !left && right)
                     {
-                        result[i, j] = 3;
-                        continue;
-                    }
-
-                    if (up && !down && left && !right)
-                    {
-                        result[i, j] = 4;
+                        result[i, j] = 6;
                         continue;
                     }
 
                     if (!up && down && !left && right)
                     {
-                        result[i, j] = 5;
+                        result[i, j] = 7;
                         continue;
                     }
 
                     if (!up && down && left && !right)
                     {
-                        result[i, j] = 6;
+                        result[i, j] = 8;
                         continue;
                     }
 
-                    result[i, j] = 7;
+                    if (up && !down && left && !right)
+                    {
+                        result[i, j] = 9;
+                        continue;
+                    }
+
+                    result[i, j] = 5;
                 }
             }
 

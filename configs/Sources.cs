@@ -29,23 +29,32 @@ namespace TowerDefence
             FontPath = "src" + divider + "fonts" + divider;
             StyleList = new List<string>()
             {
-                "ice01",
-                "lava02"
+                "ice00",
+                "lava01",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
             };
-            CurrStyle = StyleList[0] + divider;
+            CurrStyle = StyleList[4] + divider;
             
             TileTextures = new Dictionary<int, Texture>()
             {
-                [0] = new Texture(TexturePath + CurrStyle + "field_1.png"),
-                [1] = new Texture(TexturePath + CurrStyle + "field_2.png"),
-                [2] = new Texture(TexturePath + CurrStyle + "field_3.png"),
-                [3] = new Texture(TexturePath + CurrStyle + "road_corn_dl.png"),
-                [4] = new Texture(TexturePath + CurrStyle + "road_corn_dr.png"),
-                [5] = new Texture(TexturePath + CurrStyle + "road_corn_ul.png"),
-                [6] = new Texture(TexturePath + CurrStyle + "road_corn_ur.png"),
-                [7] = new Texture(TexturePath + CurrStyle + "road_cross.png"),
-                [8] = new Texture(TexturePath + CurrStyle + "road_horiz.png"),
-                [9] = new Texture(TexturePath + CurrStyle + "road_vert.png"),
+                [0] = new Texture(TexturePath + CurrStyle + "0.png"),
+                [1] = new Texture(TexturePath + CurrStyle + "1.png"),
+                [2] = new Texture(TexturePath + CurrStyle + "2.png"),
+                [3] = new Texture(TexturePath + CurrStyle + "3.png"),
+                [4] = new Texture(TexturePath + CurrStyle + "4.png"),
+                [5] = new Texture(TexturePath + CurrStyle + "5.png"),
+                [6] = new Texture(TexturePath + CurrStyle + "6.png"),
+                [7] = new Texture(TexturePath + CurrStyle + "7.png"),
+                [8] = new Texture(TexturePath + CurrStyle + "8.png"),
+                [9] = new Texture(TexturePath + CurrStyle + "9.png"),
             };
             
             TowerTextures = new Dictionary<int, Texture>()
